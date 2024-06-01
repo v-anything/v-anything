@@ -1,13 +1,10 @@
 {
   "private": true,
-  "name": "my-components",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "packageManager": "pnpm@9.1.1",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "pnpm -C play dev"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "@sudive/directives": "workspace:*"
+  }
 }
