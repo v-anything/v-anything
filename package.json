@@ -2,6 +2,6 @@
   "private": true,
   "packageManager": "pnpm@9.3.0",
   "scripts": {
-    "dev": "pnpm -C play dev"
+    "dev:play": "pnpm -C play dev"
   }
 }
