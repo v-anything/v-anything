@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { vHovertime } from "@sudive/directives";
 import HoverMe from "./components/HoverMe.vue";
+import HighlightMe from "./components/HighlightMe.vue";
 
 const visibility = ref(true);
 
@@ -32,4 +33,5 @@ const unmountedCallback = (time: number) => {
     </li>
   </ul>
   <div>total: {{ totalTime }} ms</div>
+  <HighlightMe></HighlightMe>
 </template>

@@ -2,6 +2,7 @@
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "node",
-    "allowJs": false
+    "allowJs": false,
+    "lib": ["dom", "dom.iterable", "esnext"]
   }
 }
