@@ -1,4 +1,8 @@
+import { StyleValue } from "vue";
 import type { Binding, IHighlightUtil } from "./types";
+
+const DefaultHighlight = "default-highlight";
+const HighlightPrefix = "rainbow-color-"
 
 const apiAvailableHandler = () => {
   if (!CSS.highlights) {
@@ -10,11 +14,11 @@ const apiAvailableHandler = () => {
 
 export class HighlightUtil implements IHighlightUtil {
   private static instance: HighlightUtil;
-  highlights: Highlight[];
+  highlights: Map<string, string>;
   isRainbow: boolean;
 
   constructor() {
-    this.highlights = [];
+    this.highlights = new Map();
     this.initCSSHighlights();
   }
 
@@ -27,12 +31,16 @@ export class HighlightUtil implements IHighlightUtil {
     return HighlightUtil.instance;
   }
 
-  private initCSSHighlights() {
+  private initCSSHighlights(binding: { value: Binding }) {
+    if (typeof binding.value.options.defaultDecoration === 'object') {
+
+    }
+
     const highlightInstance = new Highlight();
     this.highlights.push(highlightInstance);
     CSS.highlights.set(`default-highlight`, highlightInstance);
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < ; i++) {
       const highlightInstance = new Highlight();
       this.highlights.push(highlightInstance);
       CSS.highlights.set(`rainbow-color-${i}`, highlightInstance);
@@ -81,4 +89,14 @@ export class HighlightUtil implements IHighlightUtil {
         });
     }
   };
+
+  private addHighlightStyleToHTML = (keyword: string, style: StyleValue) => {
+    const styleTag = document.createElement("style");
+    styleTag.innerHTML = `::highlight(${keyword}) { ${style} }`;
+    document.head.appendChild(styleTag);
+  };
+
+  public unmount = () => {
+
+  }
 }

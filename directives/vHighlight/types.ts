@@ -1,10 +1,16 @@
+import { StyleValue } from "vue";
+
 export interface Binding {
   keywords: string[];
-  rainbow?: boolean;
+  options?: {
+    defaultDecoration?: StyleValue,
+    styleMap?: { [key: string]: StyleValue };
+  }
 }
 
 export interface IHighlightUtil {
   generateHighlights: (el: HTMLElement, binding: { value: Binding }) => void;
+  unmount: () => void
 }
 
 export interface ElementWithHighlighter extends HTMLElement {

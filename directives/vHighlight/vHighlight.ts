@@ -6,11 +6,19 @@ export const vHighlight: ObjectDirective<ElementWithHighlighter, Binding> = {
   created(el) {
     el.$highlighter = HighlightUtil.getInstance();
   },
+
   mounted(el, binding) {
     el.$highlighter.generateHighlights(el, binding);
   },
 
   updated(el, binding) {
     el.$highlighter.generateHighlights(el, binding);
+  },
+
+  unmounted(el) {
+    if (el.$highlighter) {
+      el.$highlighter.unmount()
+      el.$highlighter = null;
+    }
   },
 };
