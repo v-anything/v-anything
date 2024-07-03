@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@sudive/directives": "workspace:^",
+    "@v-anything/directives": "workspace:^",
     "vue": "^3.4.21"
   },
   "devDependencies": {
