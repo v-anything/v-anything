@@ -3,8 +3,8 @@ import type { ElementWithHighlighter, Binding } from "./types";
 import { HighlightUtil } from "./HighlightUtil";
 
 export const vHighlight: ObjectDirective<ElementWithHighlighter, Binding> = {
-  created(el) {
-    el.$highlighter = HighlightUtil.getInstance();
+  created(el, binding) {
+    el.$highlighter = new HighlightUtil(binding);
   },
 
   mounted(el, binding) {
@@ -17,7 +17,7 @@ export const vHighlight: ObjectDirective<ElementWithHighlighter, Binding> = {
 
   unmounted(el) {
     if (el.$highlighter) {
-      el.$highlighter.unmount()
+      el.$highlighter.unmount();
       el.$highlighter = null;
     }
   },

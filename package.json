@@ -2,6 +2,7 @@
   "private": true,
   "packageManager": "pnpm@9.3.0",
   "scripts": {
-    "dev:play": "pnpm -C play dev"
+    "dev:play": "pnpm -C play dev",
+    "build:dire": "pnpm -C directives build"
   }
 }

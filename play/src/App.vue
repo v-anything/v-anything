@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { vHovertime } from "@sudive/directives";
+import { vHovertime } from "@v-anything/directives";
 import HoverMe from "./components/HoverMe.vue";
 import HighlightMe from "./components/HighlightMe.vue";
 
