@@ -8,9 +8,17 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup --config rollup.config.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "vue"
+  ],
+  "author": "summergua",
   "license": "ISC",
+  "repository": "@v-anything/directives",
+  "exports": {
+    ".": {
+      "default": "./index.js"
+    }
+  },
   "peerDependencies": {
     "vue": "^3.4.0"
   },

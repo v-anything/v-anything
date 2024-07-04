@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { vHighlight } from "@v-anything/directives/dist";
+import { vHighlight } from "@v-anything/directives";
 import { ref } from "vue";
 
 const text = ref();
