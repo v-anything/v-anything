@@ -3,6 +3,12 @@
   "packageManager": "pnpm@9.3.0",
   "scripts": {
     "dev:play": "pnpm -C play dev",
-    "dev:doc": "pnpm -C docs dev"
+    "dev:doc": "pnpm -C docs dev",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "2.22.0-beta.3",
+    "eslint": "^9.6.0"
   }
 }
