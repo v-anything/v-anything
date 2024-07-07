@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "author": "summergua",
-  "license": "ISC",
+  "license": "MIT",
   "keywords": ["vue"],
   "main": "index.js",
   "scripts": {
