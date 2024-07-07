@@ -1,30 +1,37 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from "vue";
+import { vHovertime } from "@v-anything/directives";
+import HoverMe from "./components/HoverMe.vue";
+import HighlightMe from "./components/HighlightMe.vue";
+
+const visibility = ref(true);
+
+const hovertimeList = ref([]);
+const totalTime = ref(0);
+
+const mouseLeaveCallback = (time: number) => {
+  hovertimeList.value.push(time);
+};
+
+const unmountedCallback = (time: number) => {
+  totalTime.value = time;
+};
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <HoverMe
+    v-if="visibility"
+    v-hovertime="{
+      mouseLeaveCallback,
+      unmountedCallback,
+    }"
+  ></HoverMe>
+  <button @click="visibility = !visibility">unmount HelloWorld</button>
+  <ul>
+    <li v-for="(item, index) in hovertimeList" :key="index">
+      {{ `duration ${index}: ${item} ms` }}
+    </li>
+  </ul>
+  <div>total: {{ totalTime }} ms</div>
+  <HighlightMe></HighlightMe>
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>

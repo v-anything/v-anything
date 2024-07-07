@@ -1,9 +1,9 @@
 {
-  "private": true,
   "packageManager": "pnpm@9.3.0",
   "scripts": {
     "dev:play": "pnpm -C play dev",
     "dev:docs": "pnpm -C docs docs:dev",
+    "build:dire": "pnpm -C directives build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
