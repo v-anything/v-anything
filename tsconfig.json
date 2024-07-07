@@ -1,10 +1,10 @@
 {
   "extends": "./tsconfig.node.json",
   "compilerOptions": {
-    "module": "ESNext",
     "target": "ESNext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "ESNext",
     "moduleResolution": "node",
-    "allowJs": false,
-    "lib": ["dom", "dom.iterable", "esnext"]
+    "allowJs": false
   }
 }
