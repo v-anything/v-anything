@@ -3,7 +3,7 @@
   "packageManager": "pnpm@9.3.0",
   "scripts": {
     "dev:play": "pnpm -C play dev",
-    "dev:doc": "pnpm -C docs dev",
+    "dev:docs": "pnpm -C docs docs:dev",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
