@@ -1,3 +1,3 @@
-import { vHighlight } from "./vHighlight";
+import { vHighlight } from './vHighlight'
 
-export { vHighlight };
+export { vHighlight }

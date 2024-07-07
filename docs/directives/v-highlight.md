@@ -43,14 +43,14 @@ import { vHighlight } from '@v-anything/directives'
 ## Types
 
 ```typescript
-type StyleValue = Partial<CSSStyleDeclaration>;
+type StyleValue = Partial<CSSStyleDeclaration>
 
 interface Binding {
-  keywords: string[];
+  keywords: string[]
   options?: {
-    defaultDecoration?: StyleValue;
-    styleMap?: { [key: string]: StyleValue }; // key: keyword
-    toLowerCase?: boolean;
-  };
+    defaultDecoration?: StyleValue
+    styleMap?: { [key: string]: StyleValue } // key: keyword
+    toLowerCase?: boolean
+  }
 }
 ```

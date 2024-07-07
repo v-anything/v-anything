@@ -35,7 +35,7 @@ const unmountedCallback = (total: number) => {
 
 ```typescript
 interface Binding {
-  mouseLeaveCallback?: (time: number) => void;
-  unmountedCallback?: (time: number) => void;
+  mouseLeaveCallback?: (time: number) => void
+  unmountedCallback?: (time: number) => void
 }
 ```
