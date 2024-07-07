@@ -3,6 +3,7 @@
   "scripts": {
     "dev:play": "pnpm -C play dev",
     "dev:docs": "pnpm -C docs docs:dev",
+    "build:docs": "pnpm -C docs docs:build",
     "build:dire": "pnpm -C directives build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
