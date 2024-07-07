@@ -13,20 +13,22 @@ const apiAvailableHandler = () => {
 };
 
 export class HighlightUtil implements IHighlightUtil {
-  // private static instance: HighlightUtil;
+  binding: { value: Binding };
   wordHighLightMap: Map<string, Highlight>;
   customHighlightStyle: boolean;
   toLowerCase: boolean;
   randomId: string;
   defaultHighlightName: string;
   hilightPrefix: string;
+  createdTags: Map<string, HTMLElement>;
 
   constructor(binding: { value: Binding }) {
     if (!apiAvailableHandler()) return;
 
     this.wordHighLightMap = new Map();
-    this.customHighlightStyle = binding.value.options?.styleMap !== undefined;
-    this.toLowerCase = binding.value.options?.toLowerCase || true;
+    this.createdTags = new Map();
+    this.binding = { value: { keywords: [], options: {} } };
+
     this.randomId = nanoid();
     this.defaultHighlightName = DefaultHighlightName + this.randomId + "-";
     this.hilightPrefix = HighlightPrefix + this.randomId + "-";
@@ -38,6 +40,8 @@ export class HighlightUtil implements IHighlightUtil {
    * set custom highlight style to HTML
    */
   private initCSSHighlights(binding: { value: Binding }) {
+    if (binding === this.binding) return;
+
     const options = binding.value.options;
     if (options?.defaultDecoration && options?.styleMap) {
       console.error(
@@ -52,10 +56,23 @@ export class HighlightUtil implements IHighlightUtil {
       return;
     }
 
+    this.binding.value.keywords = binding.value.keywords;
+
+    if (
+      JSON.stringify(this.binding.value.options) ===
+      JSON.stringify(this.binding.value.keywords)
+    )
+      return; // avoid repetitive set style
+
+    this.binding.value.options = binding.value.options;
+
+    this.customHighlightStyle = options?.styleMap !== undefined;
+    this.toLowerCase = options?.toLowerCase || true;
+
     if (options?.defaultDecoration) {
       this.addHighlightStyleToHTML(
         this.defaultHighlightName,
-        binding.value.options?.defaultDecoration
+        options?.defaultDecoration
       );
       const highlightInstance = new Highlight();
       this.wordHighLightMap.set(this.defaultHighlightName, highlightInstance);
@@ -75,6 +92,7 @@ export class HighlightUtil implements IHighlightUtil {
     el: HTMLElement,
     binding: { value: Binding }
   ) => {
+    this.initCSSHighlights(binding); // for mount & update
     // get text nodes
     const treeWalker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
     const allTextNodes: Node[] = [];
@@ -91,7 +109,9 @@ export class HighlightUtil implements IHighlightUtil {
       allTextNodes
         .map((node) => ({
           node,
-          text: node.textContent.toLocaleLowerCase(),
+          text: this.toLowerCase
+            ? node.textContent.toLocaleLowerCase()
+            : node.textContent,
         }))
         .map(({ node, text }) => {
           const indices = [];
@@ -120,20 +140,26 @@ export class HighlightUtil implements IHighlightUtil {
     styleTag.innerHTML = `::highlight(${keyword}) { ${styleValTransformer(
       style
     )} }`;
+    const keywordStyleTag = this.createdTags.get(keyword);
+    keywordStyleTag && document.head.removeChild(keywordStyleTag);
     document.head.appendChild(styleTag);
+    this.createdTags.set(keyword, styleTag);
   };
 
   public unmount = () => {
     CSS.highlights.clear();
+    this.createdTags.forEach((tag) => {
+      document.head.removeChild(tag);
+    });
   };
 }
 
-// {color: red} => color: red;\n
+// {color: red} => color: red;
 const styleValTransformer = (obj: StyleValue) => {
   let css = "";
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
-      css += `${camelToKebab(key)}: ${obj[key]};\n`;
+      css += `${camelToKebab(key)}: ${obj[key]};`;
     }
   }
   return css.trim();
