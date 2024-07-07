@@ -1,3 +1,3 @@
-import { vHovertime } from "./vHovertime";
+import { vHovertime } from './vHovertime'
 
-export { vHovertime };
+export { vHovertime }

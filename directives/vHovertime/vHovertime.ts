@@ -1,32 +1,32 @@
-import type { ObjectDirective } from "vue";
+import type { ObjectDirective } from 'vue'
 
-let totalTime = 0;
-let startTime = 0;
+let totalTime = 0
+let startTime = 0
 
 interface Binding {
-  mouseLeaveCallback?: (time: number) => void;
-  unmountedCallback?: (time: number) => void;
+  mouseLeaveCallback?: (time: number) => void
+  unmountedCallback?: (time: number) => void
 }
 
 export const vHovertime: ObjectDirective<HTMLElement, Binding> = {
   mounted(el, binding) {
     el.onmouseenter = () => {
-      startTime = Date.now();
-    };
+      startTime = Date.now()
+    }
     el.onmouseleave = () => {
-      const duration = Date.now() - startTime;
-      totalTime += duration;
+      const duration = Date.now() - startTime
+      totalTime += duration
       if (binding.value && binding.value.mouseLeaveCallback) {
-        binding.value.mouseLeaveCallback(duration);
+        binding.value.mouseLeaveCallback(duration)
       }
-    };
+    }
   },
   unmounted(el, binding) {
     if (binding.value && binding.value.unmountedCallback) {
-      binding.value.unmountedCallback(totalTime);
+      binding.value.unmountedCallback(totalTime)
     }
-    el.onmouseleave = null;
-    totalTime = 0;
-    startTime = 0;
+    el.onmouseleave = null
+    totalTime = 0
+    startTime = 0
   },
-};
+}
