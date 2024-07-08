@@ -12,7 +12,7 @@
   ],
   "exports": {
     ".": {
-      "default": "./index.js"
+      "default": "./dist/index.js"
     }
   },
   "main": "dist/index.js",
@@ -24,7 +24,7 @@
     "package.json"
   ],
   "scripts": {
-    "build": "rollup --config rollup.config.js"
+    "build": "rollup --watch --config rollup.config.js"
   },
   "peerDependencies": {
     "vue": "^3.4.0"
