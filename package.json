@@ -5,8 +5,8 @@
     "dev:docs": "pnpm -C docs docs:dev",
     "build:docs": "pnpm -C docs docs:build",
     "build:dire": "pnpm -C directives build",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint": "pnpm exec eslint .",
+    "lint:fix": "pnpm exec eslint . --fix"
   },
   "devDependencies": {
     "@antfu/eslint-config": "2.22.0-beta.3",
