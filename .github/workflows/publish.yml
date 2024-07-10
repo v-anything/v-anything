@@ -11,16 +11,17 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
-      - run: npm install -g pnpm
-      - run: pnpm install
-      - run: pnpm lint
-      - run: pnpm build:dire
+      - name: Install and Build
+        run:
+          npm install -g pnpm
+          pnpm install
+          pnpm lint
+          pnpm build:dire
       - run: cd directives
-      - run: pnpm publish --access public
+      - run: npm publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
