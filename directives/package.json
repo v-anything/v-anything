@@ -27,7 +27,7 @@
     "package.json"
   ],
   "scripts": {
-    "build": "rollup --watch --config rollup.config.js"
+    "build": "rollup --config rollup.config.js"
   },
   "peerDependencies": {
     "vue": "^3.4.0"

@@ -38,7 +38,6 @@ export default [
       format: 'es',
     },
     plugins: [
-      ...plugins,
       dts(),
     ],
   },
