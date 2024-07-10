@@ -16,9 +16,9 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
-      - run: npm run lint
       - run: npm install -g pnpm
       - run: pnpm install
+      - run: pnpm lint
       - run: pnpm build:dire
       - run: cd directives
       - run: pnpm publish --access public
