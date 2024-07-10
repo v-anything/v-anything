@@ -1,7 +1,7 @@
 {
   "packageManager": "pnpm@9.3.0",
   "scripts": {
-    "dev:play": "pnpm -C play dev",
+    "dev:play": "pnpm build:dire | pnpm -C play dev",
     "dev:docs": "pnpm -C docs docs:dev",
     "build:docs": "pnpm -C docs docs:build",
     "build:dire": "pnpm -C directives build",

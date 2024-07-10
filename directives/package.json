@@ -1,22 +1,33 @@
 {
   "name": "@v-anything/directives",
   "type": "module",
-  "version": "0.0.1",
-  "description": "",
-  "author": "summergua",
+  "version": "0.0.3",
+  "description": "A Vue 3 custom directives library.",
+  "author": {
+    "name": "summergua",
+    "email": "covey.shu@gmail.com"
+  },
   "license": "MIT",
+  "homepage": "https://v-anything.github.io/v-anything",
   "repository": "@v-anything/directives",
   "keywords": [
     "vue"
   ],
   "exports": {
     ".": {
-      "default": "./index.js"
+      "default": "./dist/index.js"
     }
   },
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "README.md",
+    "dist/*.d.ts",
+    "dist/*.js",
+    "package.json"
+  ],
   "scripts": {
-    "build": "rollup --config rollup.config.js"
+    "build": "rollup --watch --config rollup.config.js"
   },
   "peerDependencies": {
     "vue": "^3.4.0"
@@ -29,6 +40,7 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "rollup": "^4.18.0",
+    "rollup-plugin-dts": "^6.1.1",
     "typescript": "^5.0.0"
   }
 }
