@@ -28,7 +28,9 @@ jobs:
           pnpm install
           pnpm lint
           pnpm build:dire
-      - run: cd directives
-      - run: npm publish --access public --no-git-checks
+      - name: Publish
+        run: |
+          cd directives
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
