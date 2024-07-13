@@ -16,6 +16,9 @@
   "exports": {
     ".": {
       "default": "./dist/index.js"
+    },
+    "./dev": {
+      "default": "./src/index.ts"
     }
   },
   "main": "dist/index.js",
