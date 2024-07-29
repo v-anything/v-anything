@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import HoverMe from './components/HoverMe.vue'
 import HighlightMe from './components/HighlightMe.vue'
 </script>
 
