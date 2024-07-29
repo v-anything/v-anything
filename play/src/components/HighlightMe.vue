@@ -1,41 +1,23 @@
 <script setup lang="ts">
-import { vHighlight } from '@v-anything/directives'
 import { ref } from 'vue'
+import { vHighlight } from '@v-anything/directives/dev'
 
 const text = ref()
-text.value
-  = '这是一段简体中文文本。单车欲问边，属国过居延。征蓬出汉塞，归雁入胡天。大漠孤烟直，长河落日圆。萧关逢候骑，都护在燕然。'.repeat(
-    1,
-  )
-// setTimeout(() => {
-//   text.value =
-//     "这是一段简体中文文本。单车欲问边，属国过居延。征蓬出汉塞，归雁入胡天。大漠孤烟直，长河落日圆。萧关逢候骑，都护在燕然。".repeat(
-//       100
-//     );
-// }, 0);
-const show = ref(true)
-setTimeout(() => {
-  show.value = false
-}, 2000)
+text.value = '这是一段。。(简体中文)。。(aa文本。'.repeat(2)
 </script>
 
 <template>
   <p
-    v-if="show"
     v-highlight="{
-      keywords: ['长河', '落日', '这是'],
+      keywords: ['中文', '这是', 'a'],
       options: {
         styleMap: {
+          a: {
+            color: 'purple',
+          },
           中文: {
             color: 'white',
             backgroundColor: 'purple',
-          },
-          长河: {
-            color: 'blue',
-            textDecoration: 'underline',
-          },
-          落日: {
-            color: 'green',
           },
           这是: {
             color: 'red',
@@ -48,28 +30,26 @@ setTimeout(() => {
   </p>
   <p
     v-highlight="{
-      keywords: ['is', 'English', 'man'],
+      keywords: ['D', 'C', 'Data', 'Claim'],
       options: {
-        defaultDecoration: {
-          color: 'yellow',
-          backgroundColor: 'black',
+        styleMap: {
+          D: {
+            color: '#EF5A6F',
+          },
+          C: {
+            color: '#399918',
+          },
+          Data: {
+            // color: '#EF5A6F',
+            color: 'red',
+          },
+          Claim: {
+            color: '#399918',
+          },
         },
       },
     }"
   >
-    This 🏄🏿‍♀️is an Enligsh is is text1 isiss.
+    前提条件(Data)是支持论题(Claim)的证据或事实，是你用来证明论题的基础。例如你要证明"人们应该每天锻炼",那么你论证的前提可能是"锻炼有助于保持健康，减少患病的风险。"
   </p>
-  <div
-    v-highlight="{
-      keywords: ['01', '89'],
-      options: {
-        defaultDecoration: {
-          color: 'red',
-          backgroundColor: 'yellow',
-        },
-      },
-    }"
-  >
-    0123456789
-  </div>
 </template>
