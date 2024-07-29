@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import HighlightMe from './components/HighlightMe.vue'
+// import HighlightMe from './components/HighlightMe.vue'
+// import HoverMe from './components/HoverMe.vue'
+import WatermarkMe from './components/WatermarkMe.vue'
 </script>
 
 <template>
   <div class="container">
     <!-- <HoverMe /> -->
-    <HighlightMe />
+    <!-- <HighlightMe /> -->
+    <WatermarkMe />
   </div>
 </template>
 
