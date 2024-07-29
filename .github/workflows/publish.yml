@@ -25,7 +25,7 @@ jobs:
       - name: Install and Build
         run: |
           npm install -g pnpm
-          pnpm install
+          pnpm install --no-frozen-lockfile
           pnpm lint
           pnpm build:dire
       - name: Publish
