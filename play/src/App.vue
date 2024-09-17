@@ -1,39 +1,38 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { vHovertime } from '@v-anything/directives'
+import { shallowRef } from 'vue'
+
 import HoverMe from './components/HoverMe.vue'
 import HighlightMe from './components/HighlightMe.vue'
+import SelectMe from './components/SelectMe.vue'
+import RightclickMe from './components/RightclickMe.vue'
 
-const visibility = ref(true)
+const comp = shallowRef(HighlightMe)
 
-const hovertimeList = ref([])
-const totalTime = ref(0)
-
-function mouseLeaveCallback(time: number) {
-  hovertimeList.value.push(time)
-}
-
-function unmountedCallback(time: number) {
-  totalTime.value = time
-}
+const directiveOptions = [
+  { label: 'HoverMe', component: HoverMe },
+  { label: 'SelectMe', component: SelectMe },
+  { label: 'HighlightMe', component: HighlightMe },
+  { label: 'RightclickMe', component: RightclickMe },
+]
 </script>
 
 <template>
-  <HoverMe
-    v-if="visibility"
-    v-hovertime="{
-      mouseLeaveCallback,
-      unmountedCallback,
-    }"
-  />
-  <button @click="visibility = !visibility">
-    unmount HelloWorld
-  </button>
-  <ul>
-    <li v-for="(item, index) in hovertimeList" :key="index">
-      {{ `duration ${index}: ${item} ms` }}
-    </li>
-  </ul>
-  <div>total: {{ totalTime }} ms</div>
-  <HighlightMe />
+  <select v-model="comp">
+    <option v-for="item in directiveOptions" :key="item.label" :value="item.component">
+      {{ item.label }}
+    </option>
+  </select>
+  <div class="container">
+    <component :is="comp" />
+  </div>
 </template>
+
+<style scoped>
+.container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+</style>
