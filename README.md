@@ -12,4 +12,6 @@ If you want to import these directives automatically, you may try [unplugin-v-an
 
 ## Development Guide
 
-run `pnpm new-dire` to create a new directive
+- run `pnpm new-dire` to create a new directive
+- update version in `directives/package.json` and commit it
+- `git tag v[x.y.z]` and `git push origin v[x.y.z]`
