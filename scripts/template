@@ -1,0 +1,12 @@
+import type { ObjectDirective } from 'vue'
+
+interface Binding {
+  property: string
+}
+
+export const vExample: ObjectDirective<HTMLElement, Binding> = {
+  mounted(el, binding) {
+  },
+  unmounted(el, binding) {
+  },
+}

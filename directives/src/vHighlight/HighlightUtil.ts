@@ -83,10 +83,11 @@ export class HighlightUtil implements IHighlightUtil {
     }
     if (options?.styleMap) {
       for (const [keyword, style] of Object.entries(options?.styleMap)) {
-        this.addHighlightStyleToHTML(this.hilightPrefix + keyword, style)
+        const kw = this.toLowerCase ? keyword.toLocaleLowerCase() : keyword
+        this.addHighlightStyleToHTML(this.hilightPrefix + kw, style)
         const highlightInstance = new Highlight()
-        this.wordHighLightMap.set(keyword, highlightInstance)
-        CSS.highlights.set(this.hilightPrefix + keyword, highlightInstance)
+        this.wordHighLightMap.set(kw, highlightInstance)
+        CSS.highlights.set(this.hilightPrefix + kw, highlightInstance)
       }
     }
   }
@@ -108,7 +109,7 @@ export class HighlightUtil implements IHighlightUtil {
     // set color for each keyword
     const keywords = binding.value.keywords
     for (let i = 0; i < keywords.length; i++) {
-      const kw = keywords[i]
+      const kw = this.toLowerCase ? keywords[i].toLocaleLowerCase() : keywords[i]
       allTextNodes
         .map(node => ({
           node,
@@ -131,7 +132,7 @@ export class HighlightUtil implements IHighlightUtil {
             range.setEnd(node, startPos)
             this.wordHighLightMap
               .get(this.customHighlightStyle ? kw : this.defaultHighlightName)
-              .add(range)
+              ?.add(range)
           }
         })
     }
