@@ -17,6 +17,7 @@
     ".": "./dist/index.js",
     "./dev": "./src/index.ts"
   },
+  "source": "src/index.ts",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -26,7 +27,8 @@
     "package.json"
   ],
   "scripts": {
-    "build": "rollup --config rollup.config.js"
+    "build": "rollup -c rollup.config.js",
+    "build:watch": "rollup -w --watch.onEnd=\"node ./log.js\" -c rollup.config.js"
   },
   "peerDependencies": {
     "vue": "^3.4.0"

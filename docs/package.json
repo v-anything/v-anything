@@ -4,7 +4,9 @@
   "description": "",
   "author": "summergua",
   "license": "MIT",
-  "keywords": ["vue"],
+  "keywords": [
+    "vue"
+  ],
   "main": "index.js",
   "scripts": {
     "docs:dev": "vitepress dev .",

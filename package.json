@@ -1,7 +1,7 @@
 {
   "packageManager": "pnpm@9.3.0",
   "scripts": {
-    "dev:play": "pnpm -C play dev",
+    "dev:play": "concurrently \"pnpm -C directives build:watch\" \"pnpm -C play dev\"",
     "dev:docs": "pnpm -C docs docs:dev",
     "build:docs": "pnpm -C docs docs:build",
     "build:dire": "pnpm -C directives build",
@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "2.22.0-beta.3",
+    "concurrently": "^9.0.1",
     "eslint": "^9.6.0"
   }
 }

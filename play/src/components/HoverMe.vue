@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { vHovertime } from '@v-anything/directives/dev'
+import { vHovertime } from '@v-anything/directives'
 
 const visibility = ref(true)
 const hovertimeList = ref([])
@@ -13,31 +13,31 @@ function mouseLeaveCallback(time: number) {
 function unmountedCallback(time: number) {
   totalTime.value = time
 }
+
+function unmount() {
+  visibility.value = !visibility.value
+  hovertimeList.value = []
+}
 </script>
 
 <template>
-  <div>
+  <div style="display: flex; flex-direction: column; gap: 4px">
     <h1
-      v-if="visibility"
-      v-hovertime="{
+      v-if="visibility" v-hovertime="{
         mouseLeaveCallback,
         unmountedCallback,
-      }"
-      class="hoverBlock"
+      }" style="background: orange; padding: 10px"
     >
       Hover me plz!
     </h1>
-    <span>{{ `${hovertimeList.join(' ms, ')} ms` }} {{ `total: ${totalTime}` }}</span>
+    <button @click="unmount">
+      unmount HelloWorld
+    </button>
+    <ul>
+      <li v-for="(item, index) in hovertimeList" :key="index">
+        {{ `duration ${index}: ${item} ms` }}
+      </li>
+    </ul>
+    <div>total: {{ totalTime }} ms</div>
   </div>
 </template>
-
-<style scoped>
-.hoverBlock{
-  width: fit-content;
-  background-color: beige;
-  &:hover{
-   cursor: pointer;
-   background-color: antiquewhite;
-  }
-}
-</style>
