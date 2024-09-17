@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { vHovertime } from '@v-anything/directives'
 
 const visibility = ref(true)
-const hovertimeList = ref([])
+const hovertimeList = ref<number[]>([])
 const totalTime = ref(0)
 
 function mouseLeaveCallback(time: number) {
