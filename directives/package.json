@@ -1,7 +1,7 @@
 {
   "name": "@v-anything/directives",
   "type": "module",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "A Vue 3 custom directives library.",
   "author": {
     "name": "summergua",
